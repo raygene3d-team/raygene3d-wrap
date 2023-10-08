@@ -33,12 +33,12 @@ THE SOFTWARE.
 
 namespace RayGene3D
 {
-  class Root;
+  class Wrap;
 
   class Broker : public Usable //Tickable
   {
   protected:
-    Root& root;
+    Wrap& wrap;
 
   public:
     void Initialize() override = 0;
@@ -46,9 +46,9 @@ namespace RayGene3D
     void Discard() override = 0;
 
   public:
-    Broker(const std::string& name, Root& root)
+    Broker(const std::string& name, Wrap& wrap)
       : Usable(name)
-      , root(root)
+      , wrap(wrap)
     {}
     virtual ~Broker()
     {}

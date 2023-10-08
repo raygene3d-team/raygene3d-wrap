@@ -27,11 +27,11 @@ THE SOFTWARE.
 ================================================================================*/
 
 #pragma once
-#include "root/broker.h"
+#include "wrap/broker.h"
 
 namespace RayGene3D
 {
-  class Root : public Usable //Visitable<T>
+  class Wrap : public Usable //Visitable<T>
   {
   protected:
     std::unique_ptr<Core> core;
@@ -55,7 +55,7 @@ namespace RayGene3D
     //void RemoveBroker(const std::shared_ptr<Broker>& broker) { return brokers.remove(broker); }
 
   public:
-    Root(Core::DeviceType device, Util::StorageType storage);
-    virtual ~Root();
+    Wrap(Core::DeviceType device, Util::StorageType storage);
+    virtual ~Wrap();
   };
 }

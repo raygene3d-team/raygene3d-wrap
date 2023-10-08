@@ -26,24 +26,24 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ================================================================================*/
 
-#include "root.h"
+#include "wrap.h"
 
 
 namespace RayGene3D
 {
-  void Root::Initialize()
+  void Wrap::Initialize()
   {}
   
-  void Root::Use()
+  void Wrap::Use()
   {
     core->Use();
     util->Use();
   }
   
-  void Root::Discard()
+  void Wrap::Discard()
   {}
 
-  Root::Root(Core::DeviceType device, Util::StorageType storage)
+  Wrap::Wrap(Core::DeviceType device, Util::StorageType storage)
     : Usable("raygene3d-root")
   {
     core = std::unique_ptr<Core>(new Core(device));
@@ -51,7 +51,7 @@ namespace RayGene3D
 
   }
 
-  Root::~Root()
+  Wrap::~Wrap()
   {
     util.reset();
     core.reset();
