@@ -59,6 +59,7 @@ THE SOFTWARE.
 #include <set>
 #include <queue>
 #include <regex>
+#include <stack>
 
 #include <variant>
 #include <optional>
