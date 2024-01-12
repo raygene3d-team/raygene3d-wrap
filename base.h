@@ -59,6 +59,7 @@ THE SOFTWARE.
 #include <set>
 #include <queue>
 #include <regex>
+#include <stack>
 
 #include <variant>
 #include <optional>
@@ -137,7 +138,7 @@ namespace RayGene3D
     USAGE_VERTEX_ARRAY = 0x10L,
     USAGE_INDEX_ARRAY = 0x20L,
     USAGE_CONSTANT_DATA = 0x40L,
-    USAGE_COMMAND_INDIRECT = 0x80L, //BIND_ARGUMENT_ARRAY =  = 0x80L,
+    USAGE_ARGUMENT_INDIRECT = 0x80L,
     USAGE_RAYTRACING_INPUT = 0x100L,
     USAGE_FORCE_UINT = 0xffffffff
   };
