@@ -128,6 +128,12 @@ namespace RayGene3D
 
 namespace RayGene3D
 {
+  struct Range
+  {
+    size_t offset{ 0u };
+    size_t length{ 0u };
+  };
+
   enum Usage
   {
     USAGE_UNKNOWN = 0,
@@ -219,7 +225,7 @@ namespace RayGene3D
     FORMAT_FORCE_UINT = 0xffffffff
   };
 
-  inline uint32_t BitCount(Format format)
+  inline constexpr uint32_t Stride(Format format)
   {
     switch (format)
     {
@@ -297,6 +303,20 @@ namespace RayGene3D
     }
 
     return 0;
+  }
+
+  inline constexpr size_t Mipmap(uint32_t size_x, uint32_t size_y)
+  {
+    return 1ull + floor(log2(std::max(size_x, size_y)));
+  }
+
+  inline constexpr size_t Length(uint32_t size_x, uint32_t size_y, Range levels = { 0, 1 })
+  {
+    auto size = 0ull;
+
+    for (auto i = levels.offset; i < levels.length; ++i) { size += size_t(std::max(1u, size_x >> i) * std::max(1u, size_y >> i)); }
+
+    return size;
   }
 
   class Usable
