@@ -305,18 +305,24 @@ namespace RayGene3D
     return 0;
   }
 
-  inline size_t Mipmap(uint32_t size_x, uint32_t size_y)
+  inline constexpr uint32_t Mip(uint32_t size, size_t level)
   {
-    return 1ull + floor(log2(std::max(size_x, size_y)));
+    return std::max(1u, size >> level);
   }
 
-  inline constexpr size_t Length(uint32_t size_x, uint32_t size_y, Range levels = { 0, 1 })
+  inline constexpr size_t Length(uint32_t size_x, uint32_t size_y, uint32_t size_z, Range levels = { 0, 1 })
   {
-    auto size = 0ull;
+    auto length = 0ull;
+    for (auto i = levels.offset; i < levels.length; ++i)
+    { 
+      length += size_t(Mip(size_x, i) * Mip(size_y, i) * Mip(size_z, i));
+    }
+    return length;
+  }
 
-    for (auto i = levels.offset; i < levels.length; ++i) { size += size_t(std::max(1u, size_x >> i) * std::max(1u, size_y >> i)); }
-
-    return size;
+  inline constexpr size_t Size(Format format, uint32_t size_x, uint32_t size_y, uint32_t size_z, Range levels = { 0, 1 })
+  {
+    return Length(size_x, size_y, size_z, levels) * Stride(format) / 8;
   }
 
   class Usable
