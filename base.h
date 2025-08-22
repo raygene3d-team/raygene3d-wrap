@@ -305,7 +305,7 @@ namespace RayGene3D
     return 0;
   }
 
-  inline constexpr size_t Mipmap(uint32_t size_x, uint32_t size_y)
+  inline size_t Mipmap(uint32_t size_x, uint32_t size_y)
   {
     return 1ull + floor(log2(std::max(size_x, size_y)));
   }
