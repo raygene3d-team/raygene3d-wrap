@@ -305,6 +305,13 @@ namespace RayGene3D
     return 0;
   }
 
+  inline constexpr size_t Levels(uint32_t size_x, uint32_t size_y)
+  {
+    const auto size = std::max(size_x, size_y);    
+    auto count = 0ull; while ((size >> ++count) > 0);
+    return count;
+  }
+
   inline constexpr uint32_t Mip(uint32_t size, size_t level)
   {
     return std::max(1u, size >> level);
@@ -313,7 +320,7 @@ namespace RayGene3D
   inline constexpr size_t Length(uint32_t size_x, uint32_t size_y, uint32_t size_z, Range levels = { 0, 1 })
   {
     auto length = 0ull;
-    for (auto i = levels.offset; i < levels.length; ++i)
+    for (auto i = levels.offset; i < levels.offset + levels.length; ++i)
     { 
       length += size_t(Mip(size_x, i) * Mip(size_y, i) * Mip(size_z, i));
     }
