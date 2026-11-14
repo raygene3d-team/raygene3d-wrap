@@ -89,7 +89,7 @@ inline std::string ExtractExtension(const std::string& path)
 
 #define BLAST_ASSERT(X) \
 { \
-  if (X == false) \
+  if (!(X)) \
   { \
     std::string info( "assertion failed @" ); \
 	  info += std::strrchr(__FILE__, '\\') ? std::strrchr(__FILE__, '\\') + 1 : __FILE__ ; \
