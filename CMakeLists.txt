@@ -1,6 +1,6 @@
 set(NAME raygene3d)
 
-set(ROOT_DIR ${CMAKE_SOURCE_DIR}/${NAME}-wrap/wrap)
+set(ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/wrap)
 set(ROOT_SOURCE
 	${ROOT_DIR}/broker.h
 	${ROOT_DIR}/broker.cpp
@@ -21,8 +21,8 @@ target_include_directories(${NAME}-wrap PUBLIC
 IF(WIN32)
 
 ELSE(WIN32)
-target_link_libraries(${NAME}-wrap PRIVATE
-	optimized -ldl
-	optimized -lpthread
+target_link_libraries(${NAME}-wrap PUBLIC
+	-ldl
+	-lpthread
 )
 ENDIF(WIN32)
